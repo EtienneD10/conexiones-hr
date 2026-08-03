@@ -3,13 +3,13 @@ import "./About.css";
 export default function About() {
   const team = [
     {
-      name: "Elena Coronel",
+      name: "Lic. Elena Coronel",
       role: "Directora de Reclutamiento y Selección",
       desc: "Especialista en atracción de talento, evaluación de competencias y psicología organizacional con más de 10 años de experiencia.",
       img: "/team-3.jpg"
     },
     {
-      name: "Gonzalo Malcon",
+      name: "Lic. Gonzalo Malcon",
       role: "Consultor de Capacitación & Desarrollo",
       desc: "Desarrollador de programas de liderazgo, dinámicas de equipo e integración laboral. Apasionado por potenciar las habilidades humanas.",
       img: "/team-1.jpg"
