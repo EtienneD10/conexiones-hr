@@ -1,383 +1,225 @@
+/* ==========================================
+   SERVICES — Dark Navy Background + Process
+   ========================================== */
+
+/* ---- Services Block (dark) ---- */
 .services-section {
-  position: relative;
-  width: 100%;
+  background: var(--navy);
+  padding: 96px 0;
 }
 
+.services-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Header */
 .services-header {
-  text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 56px;
+  max-width: 540px;
 }
 
-.services-intro {
-  max-width: 800px;
-  margin: 1rem auto 0;
-  font-size: 1.15rem;
+.services-header .section-label {
+  color: rgba(255,255,255,0.55);
 }
 
-/* Tabs Navigation */
-.services-tabs-control {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 4rem;
-  padding: 8px;
-  background: rgba(10, 0, 51, 0.4);
-  border: 1px solid var(--border-glass);
-  border-radius: 40px;
-  max-width: 550px;
-  margin-inline: auto;
-}
-
-.tab-btn {
-  flex: 1;
-  background: transparent;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 30px;
+.services-title {
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.05rem;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: var(--transition-smooth);
-}
-
-.tab-btn:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.tab-btn-active {
-  color: #ffffff;
-  background: linear-gradient(135deg, var(--brand-secondary), var(--brand-main));
-  box-shadow: var(--shadow-glow);
-}
-
-/* Tab Content Animation */
-.animate-tab-content {
-  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Recruitment Layout */
-.recruitment-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 50px;
-  align-items: start;
-}
-
-.recruitment-intro-card {
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-}
-
-.recruitment-intro-card h3 {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  font-family: var(--font-display);
-}
-
-.recruitment-intro-card p {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: var(--text-secondary);
-  margin-bottom: 1.5rem;
-}
-
-.recruitment-intro-card p strong {
-  color: var(--brand-main);
-}
-
-.recruitment-badge {
-  display: inline-block;
-  align-self: flex-start;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--brand-main);
-  background: rgba(0, 210, 255, 0.08);
-  border: 1px solid rgba(0, 210, 255, 0.2);
-  padding: 4px 12px;
-  border-radius: 12px;
-  margin-bottom: 1.5rem;
-}
-
-/* Step Showcase Card */
-.active-step-showcase {
-  margin-top: 1.5rem;
-  padding: 24px;
-  background: rgba(0, 210, 255, 0.05);
-  border: 1px solid rgba(0, 210, 255, 0.2);
-  border-radius: var(--border-radius);
-  animation: fadeIn 0.4s ease-out;
-}
-
-.showcase-step-num {
-  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3.5vw, 2.5rem);
   font-weight: 700;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  color: var(--brand-accent);
-  letter-spacing: 0.1em;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.active-step-showcase h4 {
-  font-size: 1.3rem;
-  color: #ffffff;
-  margin-bottom: 0.8rem;
-}
-
-.active-step-showcase p {
-  font-size: 0.98rem;
-  line-height: 1.6;
-  margin-bottom: 0;
-  color: var(--text-secondary);
-}
-
-/* Interactive Timeline list */
-.timeline-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.timeline-title {
-  font-size: 1.4rem;
-  margin-bottom: 1.5rem;
-  font-family: var(--font-display);
-  color: #ffffff;
-}
-
-.timeline-steps-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.timeline-step-item {
-  display: flex;
-  gap: 20px;
-  padding: 16px 20px;
-  cursor: pointer;
-  align-items: center;
-  border-radius: var(--border-radius);
-}
-
-.timeline-step-item:hover {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.step-number {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--text-secondary);
-  flex-shrink: 0;
-  transition: var(--transition-bounce);
-}
-
-.step-text h5 {
-  font-size: 1.1rem;
-  color: #ffffff;
-  margin-bottom: 0.2rem;
-  transition: var(--transition-smooth);
-}
-
-.step-desc-short {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  margin-bottom: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 400px;
-}
-
-/* Timeline Active Step Styles */
-.step-item-active {
-  border-color: var(--brand-main);
-  background: rgba(0, 210, 255, 0.08);
-  box-shadow: var(--shadow-glow);
-}
-
-.step-item-active .step-number {
-  background: linear-gradient(135deg, var(--brand-secondary), var(--brand-main));
-  color: #ffffff;
-  border-color: transparent;
-  transform: scale(1.1);
-  box-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
-}
-
-.step-item-active .step-text h5 {
-  color: var(--brand-main);
-}
-
-/* Consultorias & Capacitaciones Layout */
-.services-dual-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
-  align-items: start;
-}
-
-.sub-section-header {
-  margin-bottom: 2.5rem;
-}
-
-.sub-badge {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--brand-main);
-  margin-bottom: 0.5rem;
-}
-
-.sub-section-header h3 {
-  font-size: 2rem;
-  color: #ffffff;
-  font-family: var(--font-display);
-}
-
-/* Consulting Column */
-.consulting-cards-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.consulting-card {
-  padding: 30px;
-}
-
-.consulting-card-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+  color: var(--text-white);
+  line-height: 1.2;
   margin-bottom: 1rem;
 }
 
-.sub-icon-box {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  background: rgba(0, 210, 255, 0.08);
-  border: 1px solid rgba(0, 210, 255, 0.2);
+.services-intro {
+  color: rgba(255,255,255,0.65);
+  font-size: 0.97rem;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+/* ---- Cards Grid ---- */
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.service-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--border-radius);
+  padding: 36px 32px;
+  transition: var(--transition);
+}
+
+.service-card:hover {
+  background: rgba(255,255,255,0.09);
+  border-color: rgba(255,255,255,0.22);
+  transform: translateY(-2px);
+}
+
+/* Full-width card */
+.service-card-full {
+  grid-column: 1 / -1;
+}
+
+/* Icon */
+.service-icon {
+  width: 48px;
+  height: 48px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 20px;
+}
+
+/* Card title */
+.service-card-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-white);
+  margin-bottom: 0.85rem;
+}
+
+/* Card description */
+.service-card-desc {
+  color: rgba(255,255,255,0.65);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+}
+
+/* Bullet list */
+.service-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.service-bullets li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.65);
+  font-size: 0.88rem;
+}
+
+.service-bullets li::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.4);
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--brand-main);
+  /* checkmark via gradient trick */
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='7.25' stroke='rgba(255,255,255,0.4)' stroke-width='1.5'/%3E%3Cpath d='M5 8l2 2 4-4' stroke='rgba(255,255,255,0.7)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+  border: none;
 }
 
-.service-sub-icon {
-  width: 20px;
-  height: 20px;
+/* ---- Capacitaciones Tags ---- */
+.cap-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 1rem;
 }
 
-.consulting-card h4 {
-  font-size: 1.25rem;
-  color: #ffffff;
+.cap-tag {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50px;
+  padding: 4px 14px;
+  color: rgba(255,255,255,0.75);
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+/* ---- Process Section (white background) ---- */
+.process-section {
+  background: var(--bg-white);
+  padding: 96px 0;
+}
+
+.process-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.process-header {
+  margin-bottom: 56px;
+}
+
+.process-title {
   font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+  color: var(--text-dark);
+  margin-bottom: 0;
 }
 
-.consulting-card p {
+/* Grid of steps */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.process-step {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius);
+  padding: 32px 28px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.process-step:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.step-num {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--blue);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.step-title {
+  font-family: var(--font-body);
   font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.step-desc {
+  color: var(--text-body);
+  font-size: 0.88rem;
   line-height: 1.6;
   margin-bottom: 0;
-  color: var(--text-secondary);
 }
 
-/* Training Column */
-.training-intro-box {
-  padding: 30px;
-  margin-bottom: 2.5rem;
-}
-
-.training-intro-box p {
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: var(--text-secondary);
-}
-
-.training-highlight {
-  border-left: 3px solid var(--brand-main);
-  padding-left: 15px;
-  font-style: italic;
-}
-
-.training-modules-title {
-  font-size: 1.25rem;
-  margin-bottom: 1.5rem;
-  font-family: var(--font-display);
-  color: #ffffff;
-}
-
-.training-modules-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-.training-module-pill {
-  padding: 20px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.pill-glow-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--brand-main);
-  box-shadow: var(--shadow-glow);
-  position: absolute;
-  top: 15px;
-  right: 15px;
-}
-
-.training-module-pill h5 {
-  font-size: 1.05rem;
-  color: #ffffff;
-}
-
-.training-module-pill span {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-}
-
-/* Responsive adjustment */
-@media (max-width: 950px) {
-  .recruitment-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  
-  .services-dual-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  
-  .training-modules-grid {
+/* ---- Responsive ---- */
+@media (max-width: 840px) {
+  .services-grid {
     grid-template-columns: 1fr;
   }
-  
-  .step-desc-short {
-    max-width: 100%;
+
+  .service-card-full {
+    grid-column: 1;
+  }
+
+  .process-grid {
+    grid-template-columns: 1fr;
   }
 }

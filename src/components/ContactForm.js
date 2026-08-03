@@ -3,508 +3,355 @@
 import { useState, useRef } from "react";
 import "./ContactForm.css";
 
+const IconEmail = () => (
+  <svg className="info-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+    <polyline points="22,6 12,13 2,6" />
+  </svg>
+);
+
+const IconPhone = () => (
+  <svg className="info-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+  </svg>
+);
+
+const IconLocation = () => (
+  <svg className="info-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+    <circle cx="12" cy="10" r="3" />
+  </svg>
+);
+
 export default function ContactForm() {
   const fileInputRef = useRef(null);
-  
-  // Form values state
+
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-    cv: null
+    name: "", email: "", phone: "", area: "", message: "", cv: null,
   });
 
-  // Errors state
   const [errors, setErrors] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    cv: ""
+    name: "", email: "", phone: "", area: "", cv: "",
   });
 
-  // Submission states
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
+  const [submitStatus, setSubmitStatus] = useState(null);
   const [dragActive, setDragActive] = useState(false);
 
-  // Validate individual field
   const validateField = (name, value) => {
-    let errorMsg = "";
-    
+    let err = "";
     if (name === "name") {
-      if (!value.trim()) {
-        errorMsg = "El nombre completo es requerido.";
-      } else if (value.trim().length < 3) {
-        errorMsg = "El nombre debe tener al menos 3 caracteres.";
-      }
+      if (!value.trim()) err = "El nombre completo es requerido.";
+      else if (value.trim().length < 3) err = "Mínimo 3 caracteres.";
     }
-    
     if (name === "email") {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!value) {
-        errorMsg = "El correo electrónico es requerido.";
-      } else if (!emailRegex.test(value)) {
-        errorMsg = "Por favor, introduce un correo electrónico válido.";
-      }
+      if (!value) err = "El correo es requerido.";
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) err = "Correo inválido.";
     }
-    
     if (name === "phone") {
-      const phoneRegex = /^[0-9+\s\-()]{8,15}$/;
-      if (!value) {
-        errorMsg = "El número de teléfono es requerido.";
-      } else if (!phoneRegex.test(value)) {
-        errorMsg = "Introduce un número de teléfono válido (8-15 dígitos).";
-      }
+      if (!value) err = "El teléfono es requerido.";
+      else if (!/^[0-9+\s\-()]{8,15}$/.test(value)) err = "Teléfono inválido (8-15 dígitos).";
     }
-
-    setErrors(prev => ({ ...prev, [name]: errorMsg }));
-    return errorMsg === "";
+    if (name === "area") {
+      if (!value.trim()) err = "Este campo es requerido.";
+    }
+    setErrors((p) => ({ ...p, [name]: err }));
+    return err === "";
   };
 
-  // Input change handler (clears error on typing)
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    // Clear error on type
-    if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: "" }));
-    }
+    setFormData((p) => ({ ...p, [name]: value }));
+    if (errors[name]) setErrors((p) => ({ ...p, [name]: "" }));
   };
 
-  // Blur handler for contextual validation
-  const handleBlur = (e) => {
-    const { name, value } = e.target;
-    validateField(name, value);
-  };
+  const handleBlur = (e) => validateField(e.target.name, e.target.value);
 
-  // Validate the file input
   const validateFile = (file) => {
-    let errorMsg = "";
-    
-    if (!file) {
-      errorMsg = "El archivo del currículum es requerido.";
-    } else {
-      const allowedExtensions = ["pdf", "doc", "docx"];
-      const fileExtension = file.name.split(".").pop().toLowerCase();
-      const maxSizeBytes = 5 * 1024 * 1024; // 5MB
-
-      if (!allowedExtensions.includes(fileExtension)) {
-        errorMsg = "Formato no permitido. Solo se admiten archivos .pdf, .doc o .docx.";
-      } else if (file.size > maxSizeBytes) {
-        errorMsg = "El archivo supera el tamaño máximo permitido (5MB).";
-      }
+    let err = "";
+    if (!file) { err = "El currículum es requerido."; }
+    else {
+      const ext = file.name.split(".").pop().toLowerCase();
+      if (!["pdf","doc","docx"].includes(ext)) err = "Solo se admiten .pdf, .doc o .docx.";
+      else if (file.size > 5 * 1024 * 1024) err = "El archivo supera 5 MB.";
     }
-
-    setErrors(prev => ({ ...prev, cv: errorMsg }));
-    return errorMsg === "";
+    setErrors((p) => ({ ...p, cv: err }));
+    return err === "";
   };
 
-  // File selection handler
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    if (file) {
-      setFormData(prev => ({ ...prev, cv: file }));
-      validateFile(file);
-    }
+    if (file) { setFormData((p) => ({ ...p, cv: file })); validateFile(file); }
   };
 
-  // Drag and drop event handlers
   const handleDrag = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (e.type === "dragenter" || e.type === "dragover") {
-      setDragActive(true);
-    } else if (e.type === "dragleave") {
-      setDragActive(false);
-    }
+    e.preventDefault(); e.stopPropagation();
+    setDragActive(e.type === "dragenter" || e.type === "dragover");
   };
 
   const handleDrop = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragActive(false);
-
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      const file = e.dataTransfer.files[0];
-      setFormData(prev => ({ ...prev, cv: file }));
-      validateFile(file);
-    }
+    e.preventDefault(); e.stopPropagation(); setDragActive(false);
+    const file = e.dataTransfer.files[0];
+    if (file) { setFormData((p) => ({ ...p, cv: file })); validateFile(file); }
   };
 
-  // Remove selected CV
   const removeFile = () => {
-    setFormData(prev => ({ ...prev, cv: null }));
-    setErrors(prev => ({ ...prev, cv: "" }));
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
+    setFormData((p) => ({ ...p, cv: null }));
+    setErrors((p) => ({ ...p, cv: "" }));
+    if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
-  // Submit Handler
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Final check for all fields
-    const isNameValid = validateField("name", formData.name);
-    const isEmailValid = validateField("email", formData.email);
-    const isPhoneValid = validateField("phone", formData.phone);
-    const isCvValid = validateFile(formData.cv);
+    const ok = [
+      validateField("name", formData.name),
+      validateField("email", formData.email),
+      validateField("phone", formData.phone),
+      validateField("area", formData.area),
+      validateFile(formData.cv),
+    ].every(Boolean);
+    if (!ok) return;
 
-    if (!isNameValid || !isEmailValid || !isPhoneValid || !isCvValid) {
-      // Focus on first invalid field
-      const firstInvalid = ["name", "email", "phone", "cv"].find(field => {
-        if (field === "cv") return !isCvValid;
-        return !validateField(field, formData[field]);
-      });
-      
-      if (firstInvalid) {
-        if (firstInvalid === "cv") {
-          fileInputRef.current?.focus();
-        } else {
-          document.getElementById(firstInvalid)?.focus();
-        }
-      }
-      return;
-    }
-
-    setIsSubmitting(true);
-    setSubmitStatus(null);
-
-    // Prepare Multipart Form Data
-    const dataToSend = new FormData();
-    dataToSend.append("name", formData.name);
-    dataToSend.append("email", formData.email);
-    dataToSend.append("phone", formData.phone);
-    dataToSend.append("message", formData.message);
-    dataToSend.append("cv", formData.cv);
+    setIsSubmitting(true); setSubmitStatus(null);
+    const data = new FormData();
+    Object.entries(formData).forEach(([k, v]) => { if (v) data.append(k, v); });
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        body: dataToSend
-      });
-
-      const resData = await response.json();
-
-      if (response.ok && resData.success) {
+      const res = await fetch("/api/contact", { method: "POST", body: data });
+      const json = await res.json();
+      if (res.ok && json.success) {
         setSubmitStatus("success");
-        // Reset form
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          message: "",
-          cv: null
-        });
+        setFormData({ name:"", email:"", phone:"", area:"", message:"", cv:null });
         if (fileInputRef.current) fileInputRef.current.value = "";
-      } else {
-        setSubmitStatus("error");
-      }
-    } catch (err) {
-      console.error("Submitting error:", err);
-      setSubmitStatus("error");
-    } finally {
-      setIsSubmitting(false);
-    }
+      } else { setSubmitStatus("error"); }
+    } catch { setSubmitStatus("error"); }
+    finally { setIsSubmitting(false); }
   };
 
   return (
     <section id="contacto" className="contact-section">
-      <div className="section">
+      <div className="contact-inner">
+
+        {/* Header */}
         <div className="contact-header">
-          <span className="section-subtitle">Trabaja con Nosotros</span>
-          <h2>Envíanos tu Currículum</h2>
-          <p className="contact-intro">
-            ¿Buscas nuevos desafíos profesionales? Completa el siguiente formulario, adjunta tu CV y nos pondremos en contacto contigo cuando surjan búsquedas alineadas a tu perfil.
+          <span className="section-label">Contacto</span>
+          <h2 className="contact-title">Tan lejos como ustedes quieran llegar.</h2>
+          <p className="contact-subtitle">
+            Conversemos sobre cómo podemos acompañar a tu organización a conectar talento,
+            formación y crecimiento.
           </p>
         </div>
 
-        <div className="contact-grid">
-          {/* Form Card */}
-          <div className="contact-form-card glass-panel">
-            {submitStatus === "success" && (
-              <div className="submit-alert alert-success animate-fade-in" role="alert">
-                <svg className="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                  <polyline points="22 4 12 14.01 9 11.01" />
-                </svg>
-                <div className="alert-text">
-                  <h4>¡Postulación Recibida!</h4>
-                  <p>Hemos recibido tus datos y tu currículum correctamente. Nuestro equipo de selección te evaluará para futuras oportunidades.</p>
-                </div>
-                <button className="alert-close-btn" onClick={() => setSubmitStatus(null)} aria-label="Cerrar alerta">×</button>
-              </div>
-            )}
+        {/* Info Cards */}
+        <div className="contact-info-row">
+          <div className="contact-info-card">
+            <IconEmail />
+            <span className="info-card-label">Email</span>
+            <span className="info-card-value">contacto@conexiones.uy</span>
+          </div>
+          <div className="contact-info-card">
+            <IconPhone />
+            <span className="info-card-label">Teléfono</span>
+            <span className="info-card-value">+598 0000 0000</span>
+          </div>
+          <div className="contact-info-card">
+            <IconLocation />
+            <span className="info-card-label">Ubicación</span>
+            <span className="info-card-value">Montevideo, Uruguay</span>
+          </div>
+        </div>
 
-            {submitStatus === "error" && (
-              <div className="submit-alert alert-error animate-fade-in" role="alert">
-                <svg className="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="12" y1="8" x2="12" y2="12" />
-                  <line x1="12" y1="16" x2="12.01" y2="16" />
-                </svg>
-                <div className="alert-text">
-                  <h4>Hubo un Error</h4>
-                  <p>No se pudo procesar tu envío. Por favor, verifica los datos e inténtalo nuevamente.</p>
-                </div>
-                <button className="alert-close-btn" onClick={() => setSubmitStatus(null)} aria-label="Cerrar alerta">×</button>
-              </div>
-            )}
+        {/* Form Card */}
+        <div className="contact-form-card">
+          <span className="form-section-label">Postulate</span>
+          <h3 className="form-title">Enviá tu CV</h3>
+          <p className="form-intro">
+            Completá tus datos y adjuntá tu currículum. Te contactaremos cuando surja
+            una búsqueda acorde a tu perfil.
+          </p>
 
-            <form onSubmit={handleSubmit} className="contact-form" noValidate>
-              
-              {/* Field: Fullname */}
+          {submitStatus === "success" && (
+            <div className="submit-alert alert-success" role="alert">
+              <svg className="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              <div className="alert-text">
+                <h4>¡Postulación recibida!</h4>
+                <p>Te contactaremos cuando surja una oportunidad acorde a tu perfil.</p>
+              </div>
+              <button className="alert-close-btn" onClick={() => setSubmitStatus(null)} aria-label="Cerrar">×</button>
+            </div>
+          )}
+
+          {submitStatus === "error" && (
+            <div className="submit-alert alert-error" role="alert">
+              <svg className="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
+              <div className="alert-text">
+                <h4>Hubo un error</h4>
+                <p>No se pudo procesar tu envío. Por favor intentalo nuevamente.</p>
+              </div>
+              <button className="alert-close-btn" onClick={() => setSubmitStatus(null)} aria-label="Cerrar">×</button>
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="contact-form" noValidate>
+
+            {/* Nombre */}
+            <div className="form-group-item">
+              <label htmlFor="name" className="form-label">
+                Nombre completo <span className="required-star">*</span>
+              </label>
+              <input
+                type="text" id="name" name="name" value={formData.name}
+                onChange={handleChange} onBlur={handleBlur}
+                className={`form-input ${errors.name ? "input-invalid" : ""}`}
+                placeholder="Ej. María Pérez"
+                autoComplete="name" disabled={isSubmitting} required
+              />
+              {errors.name && <span className="error-message" role="alert">{errors.name}</span>}
+            </div>
+
+            {/* Email + Teléfono */}
+            <div className="form-row-grid">
               <div className="form-group-item">
-                <label htmlFor="name" className="form-label">
-                  Nombre Completo <span className="required-star">*</span>
+                <label htmlFor="email" className="form-label">
+                  Email <span className="required-star">*</span>
                 </label>
                 <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={`form-input ${errors.name ? "input-invalid" : ""}`}
-                  placeholder="Ej. Juan Pérez"
-                  autocomplete="name"
-                  disabled={isSubmitting}
-                  required
+                  type="email" id="email" name="email" value={formData.email}
+                  onChange={handleChange} onBlur={handleBlur}
+                  className={`form-input ${errors.email ? "input-invalid" : ""}`}
+                  placeholder="tu@email.com"
+                  autoComplete="email" disabled={isSubmitting} required
                 />
-                {errors.name && (
-                  <span className="error-message" id="name-error" role="alert">
-                    {errors.name}
-                  </span>
-                )}
+                {errors.email && <span className="error-message" role="alert">{errors.email}</span>}
               </div>
-
-              {/* Grid: Email & Phone */}
-              <div className="form-row-grid">
-                <div className="form-group-item">
-                  <label htmlFor="email" className="form-label">
-                    Correo Electrónico <span className="required-star">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className={`form-input ${errors.email ? "input-invalid" : ""}`}
-                    placeholder="ejemplo@correo.com"
-                    autocomplete="email"
-                    disabled={isSubmitting}
-                    required
-                  />
-                  {errors.email && (
-                    <span className="error-message" id="email-error" role="alert">
-                      {errors.email}
-                    </span>
-                  )}
-                </div>
-
-                <div className="form-group-item">
-                  <label htmlFor="phone" className="form-label">
-                    Teléfono de Contacto <span className="required-star">*</span>
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className={`form-input ${errors.phone ? "input-invalid" : ""}`}
-                    placeholder="Ej. +598 99 123 456"
-                    autocomplete="tel"
-                    inputmode="tel"
-                    disabled={isSubmitting}
-                    required
-                  />
-                  {errors.phone && (
-                    <span className="error-message" id="phone-error" role="alert">
-                      {errors.phone}
-                    </span>
-                  )}
-                </div>
-              </div>
-
-              {/* Field: Message */}
               <div className="form-group-item">
-                <label htmlFor="message" className="form-label">
-                  Mensaje / Breve Presentación
+                <label htmlFor="phone" className="form-label">
+                  Teléfono <span className="required-star">*</span>
                 </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="form-textarea"
-                  placeholder="Cuéntanos un poco sobre ti, tu perfil y tus expectativas laborales..."
-                  disabled={isSubmitting}
-                  rows="4"
-                ></textarea>
+                <input
+                  type="tel" id="phone" name="phone" value={formData.phone}
+                  onChange={handleChange} onBlur={handleBlur}
+                  className={`form-input ${errors.phone ? "input-invalid" : ""}`}
+                  placeholder="+598 9 123 4567"
+                  autoComplete="tel" disabled={isSubmitting} required
+                />
+                {errors.phone && <span className="error-message" role="alert">{errors.phone}</span>}
               </div>
+            </div>
 
-              {/* Field: File Upload CV */}
-              <div className="form-group-item">
-                <label id="cv-label" className="form-label">
-                  Adjuntar Currículum Vitae (PDF, DOC, DOCX) <span className="required-star">*</span>
-                </label>
-                
-                {/* Drag and Drop Zone */}
-                {!formData.cv ? (
-                  <div 
-                    className={`drag-drop-zone ${dragActive ? "drag-active" : ""} ${errors.cv ? "zone-invalid" : ""}`}
-                    onDragEnter={handleDrag}
-                    onDragOver={handleDrag}
-                    onDragLeave={handleDrag}
-                    onDrop={handleDrop}
-                  >
-                    <svg className="upload-cloud-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            {/* Puesto / Área */}
+            <div className="form-group-item">
+              <label htmlFor="area" className="form-label">
+                Puesto o área de interés <span className="required-star">*</span>
+              </label>
+              <input
+                type="text" id="area" name="area" value={formData.area}
+                onChange={handleChange} onBlur={handleBlur}
+                className={`form-input ${errors.area ? "input-invalid" : ""}`}
+                placeholder="Ej. Administración, Ventas, Liderazgo, Turismo..."
+                disabled={isSubmitting} required
+              />
+              {errors.area && <span className="error-message" role="alert">{errors.area}</span>}
+            </div>
+
+            {/* Mensaje */}
+            <div className="form-group-item">
+              <label htmlFor="message" className="form-label">Mensaje (opcional)</label>
+              <textarea
+                id="message" name="message" value={formData.message}
+                onChange={handleChange}
+                className="form-textarea"
+                placeholder="Contanos brevemente sobre tu experiencia o disponibilidad."
+                disabled={isSubmitting} rows="4"
+              />
+            </div>
+
+            {/* CV Upload */}
+            <div className="form-group-item">
+              <label id="cv-label" className="form-label">
+                Currículum (PDF o DOC) <span className="required-star">*</span>
+              </label>
+
+              {!formData.cv ? (
+                <div
+                  className={`drag-drop-zone ${dragActive ? "drag-active" : ""} ${errors.cv ? "zone-invalid" : ""}`}
+                  onDragEnter={handleDrag} onDragOver={handleDrag} onDragLeave={handleDrag} onDrop={handleDrop}
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  <div className="upload-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                       <polyline points="17 8 12 3 7 8" />
                       <line x1="12" y1="3" x2="12" y2="15" />
                     </svg>
-                    <p className="drag-instructions">
-                      Arrastra y suelta tu archivo aquí, o{" "}
-                      <button 
-                        type="button" 
-                        className="file-browse-btn" 
-                        onClick={() => fileInputRef.current?.click()}
-                      >
-                        búscalo en tu dispositivo
-                      </button>
-                    </p>
-                    <span className="file-limits-hint">Formatos soportados: PDF, Word (Max 5MB)</span>
                   </div>
-                ) : (
-                  /* Selected File Display */
-                  <div className="selected-file-panel glass-panel">
-                    <div className="file-info-col">
-                      <svg className="file-type-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                        <polyline points="14 2 14 8 20 8" />
-                        <line x1="16" y1="13" x2="8" y2="13" />
-                        <line x1="16" y1="17" x2="8" y2="17" />
-                        <polyline points="10 9 9 9 8 9" />
-                      </svg>
-                      <div className="file-meta">
-                        <span className="file-name">{formData.cv.name}</span>
-                        <span className="file-size">{(formData.cv.size / 1024 / 1024).toFixed(2)} MB</span>
-                      </div>
+                  <div className="upload-text-col">
+                    <span className="upload-main-label">Subí tu CV</span>
+                    <span className="upload-hint">PDF, DOC o DOCX · hasta 5 MB</span>
+                  </div>
+                </div>
+              ) : (
+                <div className="selected-file-panel">
+                  <div className="file-info-col">
+                    <svg className="file-type-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                      <polyline points="14 2 14 8 20 8" />
+                    </svg>
+                    <div>
+                      <span className="file-name">{formData.cv.name}</span>
+                      <span className="file-size">{(formData.cv.size / 1024 / 1024).toFixed(2)} MB</span>
                     </div>
-                    <button 
-                      type="button" 
-                      className="file-remove-btn" 
-                      onClick={removeFile}
-                      aria-label="Remover currículum seleccionado"
-                    >
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18" />
-                        <line x1="6" y1="6" x2="18" y2="18" />
-                      </svg>
-                    </button>
                   </div>
-                )}
-                
-                {/* Real File Input Hidden */}
-                <input
-                  type="file"
-                  id="cv"
-                  ref={fileInputRef}
-                  onChange={handleFileChange}
-                  accept=".pdf,.doc,.docx"
-                  className="visually-hidden"
-                  aria-labelledby="cv-label"
-                  disabled={isSubmitting}
-                />
-                
-                {errors.cv && (
-                  <span className="error-message" id="cv-error" role="alert">
-                    {errors.cv}
-                  </span>
-                )}
-              </div>
+                  <button type="button" className="file-remove-btn" onClick={removeFile} aria-label="Remover archivo">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                  </button>
+                </div>
+              )}
 
-              {/* Submit Button */}
-              <button 
-                type="submit" 
-                className="btn btn-primary submit-form-btn"
-                disabled={isSubmitting}
-              >
+              <input
+                type="file" id="cv" ref={fileInputRef}
+                onChange={handleFileChange} accept=".pdf,.doc,.docx"
+                className="visually-hidden" aria-labelledby="cv-label" disabled={isSubmitting}
+              />
+              {errors.cv && <span className="error-message" role="alert">{errors.cv}</span>}
+            </div>
+
+            {/* Submit Row */}
+            <div className="form-submit-row">
+              <p className="form-note">
+                Al enviar abriremos tu correo. Recordá adjuntar el CV antes de mandarlo.
+              </p>
+              <button type="submit" className="submit-form-btn" disabled={isSubmitting}>
                 {isSubmitting ? (
-                  <>
-                    <span className="btn-spinner"></span>
-                    Enviando Postulación...
-                  </>
+                  <><span className="btn-spinner" /> Enviando...</>
                 ) : (
-                  "Enviar Currículum"
+                  "Enviar postulación →"
                 )}
               </button>
+            </div>
 
-            </form>
-          </div>
-          
-          {/* Info Card */}
-          <div className="contact-info-col">
-            <div className="info-detail-card glass-panel">
-              <h3>¿Qué buscamos en Conexiones?</h3>
-              <p>
-                Valoramos la excelencia, el enfoque ético, el entusiasmo por aprender y la adaptabilidad. Ofrecemos oportunidades constantes en empresas de primer nivel dentro del mercado uruguayo.
-              </p>
-              
-              <ul className="info-points-list">
-                <li>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="info-icon">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                  Confidencialidad absoluta en el manejo de tu información.
-                </li>
-                <li>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="info-icon">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                  Feedback y acompañamiento integral en todas las etapas.
-                </li>
-                <li>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="info-icon">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                  Acceso a capacitaciones complementarias exclusivas.
-                </li>
-              </ul>
-            </div>
-            
-            <div className="info-contact-card glass-panel">
-              <h4>Contacto Directo</h4>
-              <div className="contact-ways">
-                <div className="contact-way-item">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="way-icon">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                    <polyline points="22,6 12,13 2,6" />
-                  </svg>
-                  <span>info@conexiones.com.uy</span>
-                </div>
-                <div className="contact-way-item">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="way-icon">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                  </svg>
-                  <span>+598 2900 1234</span>
-                </div>
-                <div className="contact-way-item">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="way-icon">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
-                  <span>Montevideo, Uruguay</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          </form>
         </div>
+
+        {/* Bottom CTA */}
+        <div className="contact-cta-row">
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              const el = document.getElementById("contacto");
+              if (el) el.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Escribinos →
+          </button>
+        </div>
+
       </div>
     </section>
   );
