@@ -3,19 +3,19 @@ import "./About.css";
 export default function About() {
   const team = [
     {
-      name: "Lic. María Gómez",
+      name: "Elena Coronel",
       role: "Directora de Reclutamiento y Selección",
       desc: "Especialista en atracción de talento, evaluación de competencias y psicología organizacional con más de 10 años de experiencia.",
       img: "/team-3.jpg"
     },
     {
-      name: "Lic. Juan Pérez",
+      name: "Gonzalo Malcon",
       role: "Consultor de Capacitación & Desarrollo",
       desc: "Desarrollador de programas de liderazgo, dinámicas de equipo e integración laboral. Apasionado por potenciar las habilidades humanas.",
       img: "/team-1.jpg"
     },
     {
-      name: "Ing. Laura Vecino",
+      name: "Juan Perez",
       role: "Consultora de Estrategia y Procesos",
       desc: "Especialista en reestructuración y optimización de recursos empresariales, acompañando a PyMEs en el crecimiento sostenible.",
       img: "/team-2.jpg"
@@ -37,19 +37,19 @@ export default function About() {
               aria-hidden="true"
             >
               {/* Connection lines */}
-              <line x1="130" y1="50"  x2="60"  y2="130" stroke="#1a5cad" strokeWidth="1.5" strokeDasharray="4 3" />
-              <line x1="130" y1="50"  x2="200" y2="130" stroke="#1a5cad" strokeWidth="1.5" strokeDasharray="4 3" />
-              <line x1="60"  y1="130" x2="30"  y2="190" stroke="#1a5cad" strokeWidth="1.5" strokeDasharray="4 3" />
-              <line x1="60"  y1="130" x2="110" y2="190" stroke="#1a5cad" strokeWidth="1.5" strokeDasharray="4 3" />
+              <line x1="130" y1="50" x2="60" y2="130" stroke="#1a5cad" strokeWidth="1.5" strokeDasharray="4 3" />
+              <line x1="130" y1="50" x2="200" y2="130" stroke="#1a5cad" strokeWidth="1.5" strokeDasharray="4 3" />
+              <line x1="60" y1="130" x2="30" y2="190" stroke="#1a5cad" strokeWidth="1.5" strokeDasharray="4 3" />
+              <line x1="60" y1="130" x2="110" y2="190" stroke="#1a5cad" strokeWidth="1.5" strokeDasharray="4 3" />
               <line x1="200" y1="130" x2="150" y2="190" stroke="#1a5cad" strokeWidth="1.5" strokeDasharray="4 3" />
               <line x1="200" y1="130" x2="230" y2="190" stroke="#1a5cad" strokeWidth="1.5" strokeDasharray="4 3" />
 
               {/* Nodes — people icons */}
               {[
-                { cx: 130, cy: 50,  r: 22, main: true },
-                { cx: 60,  cy: 130, r: 18 },
+                { cx: 130, cy: 50, r: 22, main: true },
+                { cx: 60, cy: 130, r: 18 },
                 { cx: 200, cy: 130, r: 18 },
-                { cx: 30,  cy: 190, r: 15 },
+                { cx: 30, cy: 190, r: 15 },
                 { cx: 110, cy: 190, r: 15 },
                 { cx: 150, cy: 190, r: 15 },
                 { cx: 230, cy: 190, r: 15 },
@@ -102,7 +102,7 @@ export default function About() {
               <h4>{member.name}</h4>
               <span className="about-team-role">{member.role}</span>
               <p className="about-team-desc">{member.desc}</p>
-              
+
               <div className="team-socials">
                 <a href="#linkedin" className="team-social-link" aria-label="LinkedIn">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
