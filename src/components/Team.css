@@ -1,0 +1,140 @@
+.team-section {
+  position: relative;
+  width: 100%;
+}
+
+.team-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.team-intro {
+  max-width: 700px;
+  margin: 1rem auto 0;
+  font-size: 1.15rem;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.team-card {
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: var(--border-radius);
+  height: 100%;
+}
+
+.avatar-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-svg-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  z-index: 2;
+  transition: var(--transition-bounce);
+}
+
+.avatar-ring {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border-radius: 50%;
+  border: 2px dashed var(--brand-main);
+  opacity: 0.3;
+  z-index: 1;
+  animation: rotateRing 20s linear infinite;
+  transition: var(--transition-smooth);
+}
+
+.team-card:hover .avatar-ring {
+  border-color: var(--brand-main);
+  opacity: 0.8;
+  box-shadow: var(--shadow-glow);
+  transform: scale(1.05);
+}
+
+.team-card:hover .team-svg-avatar {
+  transform: scale(1.1);
+}
+
+@keyframes rotateRing {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.member-name {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-bottom: 0.4rem;
+  font-family: var(--font-display);
+}
+
+.member-role {
+  font-size: 0.95rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--brand-main);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.member-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  flex-grow: 1;
+}
+
+.member-socials {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-link {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: var(--transition-bounce);
+}
+
+.social-link:hover {
+  background: linear-gradient(135deg, var(--brand-secondary), var(--brand-main));
+  color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: var(--shadow-glow);
+}
+
+/* Responsive grid tweak */
+@media (max-width: 640px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+}
