@@ -53,6 +53,118 @@
   margin-bottom: 1rem;
 }
 
+/* ---- Team Section inside About ---- */
+.about-team-wrapper {
+  max-width: var(--max-width);
+  margin: 80px auto 60px;
+  padding: 0 24px;
+}
+
+.about-team-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.about-team-title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--text-dark);
+}
+
+.about-team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  max-width: 760px; /* limits to 2 cards wide */
+  margin: 0 auto;
+}
+
+.about-team-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius);
+  padding: 36px 24px;
+  width: calc(50% - 12px);
+  min-width: 300px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-team-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.about-team-img-wrapper {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  padding: 4px;
+  border: 2px solid var(--blue);
+}
+
+.about-team-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.about-team-card h4 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+}
+
+.about-team-role {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 16px;
+}
+
+.about-team-desc {
+  font-size: 0.9rem;
+  color: var(--text-body);
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.team-socials {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.team-social-link {
+  color: var(--text-muted);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.team-social-link:hover {
+  color: var(--blue);
+  border-color: var(--blue);
+  background: var(--bg-page);
+}
+
 /* ---- Mission / Vision cards row ---- */
 .mv-row {
   display: grid;
@@ -62,10 +174,10 @@
 }
 
 .mv-card {
-  background: var(--bg-white);
+  background: var(--bg-page);
   border: 1px solid var(--border);
   border-radius: var(--border-radius);
-  padding: 28px 24px;
+  padding: 32px 28px;
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
 }
@@ -77,14 +189,14 @@
 
 .mv-card-title {
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 700;
-  color: var(--text-dark);
-  margin-bottom: 0.75rem;
+  color: var(--navy);
+  margin-bottom: 1rem;
 }
 
 .mv-card p {
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   color: var(--text-body);
   line-height: 1.65;
   margin-bottom: 0;
@@ -103,5 +215,9 @@
 
   .mv-row {
     grid-template-columns: 1fr;
+  }
+
+  .about-team-card {
+    width: 100%;
   }
 }
