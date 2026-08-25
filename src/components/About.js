@@ -15,8 +15,8 @@ export default function About() {
       img: "/team-1.jpg"
     },
     {
-      name: "Juan Perez",
-      role: "Consultora de Estrategia y Procesos",
+      name: "Lic. Juan Carlos Suárez",
+      role: "Consultor de Estrategia y Procesos",
       desc: "Especialista en reestructuración y optimización de recursos empresariales, acompañando a PyMEs en el crecimiento sostenible.",
       img: "/team-2.jpg"
     }
