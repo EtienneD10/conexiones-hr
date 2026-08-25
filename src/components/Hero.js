@@ -40,10 +40,10 @@ export default function Hero() {
       {/* Right: Image */}
       <div className="hero-right">
         <img
-          src="/hero-team.png"
+          src="/teamTodos.jpeg"
           alt="Equipo profesional de Conexiones HR"
           className="hero-image"
-          fetchpriority="high"
+          fetchPriority="high"
         />
         <div className="hero-image-overlay" />
       </div>

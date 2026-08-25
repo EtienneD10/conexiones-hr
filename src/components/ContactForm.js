@@ -135,11 +135,7 @@ export default function ContactForm() {
         {/* Header */}
         <div className="contact-header">
           <span className="section-label">Contacto</span>
-          <h2 className="contact-title">Tan lejos como ustedes quieran llegar.</h2>
-          <p className="contact-subtitle">
-            Conversemos sobre cómo podemos acompañar a tu organización a conectar talento,
-            formación y crecimiento.
-          </p>
+
         </div>
 
         {/* Info Cards */}

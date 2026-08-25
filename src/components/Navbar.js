@@ -55,14 +55,7 @@ export default function Navbar() {
           onClick={(e) => { e.preventDefault(); handleNavClick("inicio"); }}
         >
           <div className="logo-icon">
-            {/* Simple "C" connection icon in white */}
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="8" r="3" fill="white" />
-              <circle cx="6"  cy="17" r="2.5" fill="white" opacity="0.85" />
-              <circle cx="18" cy="17" r="2.5" fill="white" opacity="0.85" />
-              <line x1="12" y1="11" x2="6"  y2="15" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-              <line x1="12" y1="11" x2="18" y2="15" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
+            <img src="/logo-nuevo.png" alt="Logo Conexiones" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
           </div>
           <span className="logo-text">Conexiones</span>
         </a>

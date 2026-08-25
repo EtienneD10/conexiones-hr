@@ -8,32 +8,18 @@
 }
 
 .about-inner {
-  max-width: var(--max-width);
+  max-width: 800px;
   margin: 0 auto;
   padding: 0 24px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
+  text-align: center;
 }
 
-/* ---- Left: Illustration placeholder ---- */
-.about-illustration {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.about-illustration-card {
-  background: var(--bg-page);
-  border: 1px solid var(--border);
-  border-radius: var(--border-radius);
-  padding: 48px 40px;
-  width: 100%;
-  max-width: 380px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.about-subheading {
+  font-size: 1.8rem;
+  color: var(--navy);
+  margin: 48px 0 16px;
+  font-family: var(--font-display);
+  font-weight: 700;
 }
 
 /* ---- Right: Text content ---- */

@@ -357,12 +357,14 @@
   align-items: center;
   gap: 8px;
   white-space: nowrap;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
 }
 
 .submit-form-btn:hover:not(:disabled) {
   background: var(--navy-mid);
   border-color: var(--navy-mid);
   transform: translateY(-1px);
+  box-shadow: 0 0 16px rgba(255, 215, 0, 0.6);
 }
 
 .submit-form-btn:disabled {

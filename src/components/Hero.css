@@ -81,7 +81,7 @@
 .hero-btn-primary {
   background: var(--text-white);
   color: var(--navy);
-  border: 2px solid var(--text-white);
+  border: 2px solid #FFD700;
   padding: 0.7rem 1.6rem;
   border-radius: 50px;
   font-family: var(--font-body);
@@ -93,12 +93,14 @@
   align-items: center;
   gap: 6px;
   white-space: nowrap;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
 }
 
 .hero-btn-primary:hover {
   background: transparent;
-  color: var(--text-white);
+  color: #FFD700;
   transform: translateY(-1px);
+  box-shadow: 0 0 16px rgba(255, 215, 0, 0.7);
 }
 
 .hero-btn-outline {
