@@ -16,7 +16,7 @@ export default function Team() {
       )
     },
     {
-      name: "Lic. Juan Pérez",
+      name: "Lic. Juan Carlos Suárez",
       role: "Consultor de Capacitación & Desarrollo",
       desc: "Desarrollador de programas de liderazgo, dinámicas de equipo e integración laboral. Apasionado por potenciar las habilidades humanas.",
       avatar: (
@@ -82,7 +82,7 @@ export default function Team() {
               <h3 className="member-name">{member.name}</h3>
               <span className="member-role">{member.role}</span>
               <p className="member-desc">{member.desc}</p>
-              
+
               <div className="member-socials">
                 <a href="#linkedin" className="social-link" aria-label={`LinkedIn de ${member.name}`}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
