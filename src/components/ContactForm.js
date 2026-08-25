@@ -72,7 +72,7 @@ export default function ContactForm() {
     if (!file) { err = "El currículum es requerido."; }
     else {
       const ext = file.name.split(".").pop().toLowerCase();
-      if (!["pdf","doc","docx"].includes(ext)) err = "Solo se admiten .pdf, .doc o .docx.";
+      if (!["pdf", "doc", "docx"].includes(ext)) err = "Solo se admiten .pdf, .doc o .docx.";
       else if (file.size > 5 * 1024 * 1024) err = "El archivo supera 5 MB.";
     }
     setErrors((p) => ({ ...p, cv: err }));
@@ -121,7 +121,7 @@ export default function ContactForm() {
       const json = await res.json();
       if (res.ok && json.success) {
         setSubmitStatus("success");
-        setFormData({ name:"", email:"", phone:"", area:"", message:"", cv:null });
+        setFormData({ name: "", email: "", phone: "", area: "", message: "", cv: null });
         if (fileInputRef.current) fileInputRef.current.value = "";
       } else { setSubmitStatus("error"); }
     } catch { setSubmitStatus("error"); }
@@ -143,12 +143,12 @@ export default function ContactForm() {
           <div className="contact-info-card">
             <IconEmail />
             <span className="info-card-label">Email</span>
-            <span className="info-card-value">contacto@conexiones.uy</span>
+            <span className="info-card-value">consultora@conexionesuy.com</span>
           </div>
           <div className="contact-info-card">
             <IconPhone />
             <span className="info-card-label">Teléfono</span>
-            <span className="info-card-value">+598 0000 0000</span>
+            <span className="info-card-value">+59891263727</span>
           </div>
           <div className="contact-info-card">
             <IconLocation />
