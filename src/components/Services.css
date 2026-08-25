@@ -176,12 +176,13 @@
   border: 1px solid var(--border);
   border-radius: var(--border-radius);
   padding: 32px 28px;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
   transition: var(--transition);
 }
 
 .process-step:hover {
-  box-shadow: var(--shadow-md);
+  background: var(--bg-white);
+  box-shadow: 0 0 16px rgba(255, 215, 0, 0.6);
   transform: translateY(-2px);
 }
 
