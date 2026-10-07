@@ -30,6 +30,9 @@
   font-size: clamp(2rem, 4vw, 3rem);
   color: var(--text-dark);
   margin-bottom: 1rem;
+  display: inline-block;
+  border-bottom: 4px solid #FFD700;
+  padding-bottom: 8px;
 }
 
 .values-intro-text {

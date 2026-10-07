@@ -63,7 +63,6 @@ export default function MissionValues() {
     <section id="valores" className="mission-values-section">
       <div className="mv-container-grid">
         <div className="values-header">
-          <span className="section-label">Nuestros Cimientos</span>
           <h2 className="values-title">Nuestros Valores</h2>
           <p className="values-intro-text">
             Nuestra cultura corporativa se rige por principios sólidos que guían cada uno de nuestros proyectos y relaciones comerciales.

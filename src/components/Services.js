@@ -39,10 +39,10 @@ export default function Services() {
       <section id="servicios" className="services-section">
         <div className="services-inner">
           <div className="services-header">
-            <span className="section-label">Servicios</span>
-            <h2 className="services-title">
+            <h2 className="services-title">Servicios</h2>
+            <h3 className="services-subtitle">
               Soluciones a medida para que tu empresa crezca.
-            </h2>
+            </h3>
             <p className="services-intro">
               Combinamos experiencia en recursos humanos con capacitaciones y consultoría
               empresarial para acompañar tu crecimiento.
@@ -51,8 +51,8 @@ export default function Services() {
 
           {/* Cards */}
           <div className="services-grid">
-            {/* Card 1: Reclutamiento */}
-            <div className="service-card">
+            {/* Card 1: Reclutamiento (full width) */}
+            <div className="service-card service-card-full">
               <IconPeople />
               <h3 className="service-card-title">Atracción y selección de talento</h3>
               <p className="service-card-desc">
@@ -85,8 +85,8 @@ export default function Services() {
               </ul>
             </div>
 
-            {/* Card 3: Capacitaciones (full width) */}
-            <div className="service-card service-card-full">
+            {/* Card 3: Capacitaciones */}
+            <div className="service-card">
               <IconGradCap />
               <h3 className="service-card-title">Capacitaciones empresariales</h3>
               <p className="service-card-desc">
@@ -108,8 +108,8 @@ export default function Services() {
       <section id="proceso" className="process-section">
         <div className="process-inner">
           <div className="process-header">
-            <span className="section-label">Cómo trabajamos</span>
-            <h2 className="process-title">Etapas del proceso de selección</h2>
+            <h2 className="process-title">Cómo trabajamos</h2>
+            <h3 className="process-subtitle">Etapas del proceso de selección</h3>
           </div>
 
           <div className="process-grid">

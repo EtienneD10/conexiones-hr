@@ -30,6 +30,9 @@
   color: var(--text-dark);
   margin-bottom: 1.25rem;
   line-height: 1.15;
+  display: inline-block;
+  border-bottom: 4px solid #FFD700;
+  padding-bottom: 8px;
 }
 
 .about-body {

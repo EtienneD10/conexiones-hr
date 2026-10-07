@@ -134,8 +134,7 @@ export default function ContactForm() {
 
         {/* Header */}
         <div className="contact-header">
-          <span className="section-label">Contacto</span>
-
+          <h2 className="contact-title">Contacto</h2>
         </div>
 
         {/* Info Cards */}

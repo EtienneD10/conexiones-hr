@@ -4,19 +4,37 @@ export default function About() {
   const team = [
     {
       name: "Lic. Elena Coronel",
-      role: "Directora de Reclutamiento y Selección",
+      role: (
+        <>
+          Socia fundadora
+          <br />
+          Consultora en Gestión Humana
+        </>
+      ),
       desc: "Especialista en atracción de talento, evaluación de competencias y psicología organizacional con más de 10 años de experiencia.",
       img: "/team-3.jpg"
     },
     {
       name: "Lic. Gonzalo Malcon",
-      role: "Consultor de Capacitación & Desarrollo",
+      role: (
+        <>
+          Socio Fundador
+          <br />
+          Asesor Desarrollo de Negocios y Gestión Estratégica
+        </>
+      ),
       desc: "Desarrollador de programas de liderazgo, dinámicas de equipo e integración laboral. Apasionado por potenciar las habilidades humanas.",
       img: "/team-1.jpg"
     },
     {
       name: "Lic. Juan Carlos Suárez",
-      role: "Consultor de Estrategia y Procesos",
+      role: (
+        <>
+          Especialista en Marketing
+          <br />
+          Consultor Senior
+        </>
+      ),
       desc: "Especialista en reestructuración y optimización de recursos empresariales, acompañando a PyMEs en el crecimiento sostenible.",
       img: "/team-2.jpg"
     }
@@ -27,10 +45,7 @@ export default function About() {
       {/* ---- Quiénes Somos ---- */}
       <div className="about-inner">
         <div className="about-text">
-          <span className="section-label">Quiénes somos</span>
-          <h2 className="about-heading">
-            Integramos talento, estrategia y desarrollo empresarial.
-          </h2>
+          <h2 className="about-heading">Quiénes somos</h2>
           <p className="about-body">
             Somos una consultora uruguaya que brinda servicios de reclutamiento y
             selección de talento, capacitaciones y consultorías empresariales.

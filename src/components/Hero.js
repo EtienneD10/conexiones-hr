@@ -14,11 +14,14 @@ export default function Hero() {
       <div className="hero-left">
         <div className="hero-content">
           <h1 className="hero-title">
-            Talento y estrategia que impulsan resultados.
+            <span className="hero-title-line">Conectamos Talento</span>
+            <span className="hero-title-sep"> - </span>
+            <span className="hero-title-line">Impulsamos Personas</span>
+            <span className="hero-title-sep"> - </span>
+            <span className="hero-title-line">Fortalecemos Empresas</span>
           </h1>
           <p className="hero-subtitle">
-            Reclutamiento, selección y capacitaciones empresariales con un
-            enfoque profesional, ético y adaptado al mercado uruguayo.
+            Reclutamiento y Selección &nbsp;&bull;&nbsp; Capacitaciones Empresariales
           </p>
           <div className="hero-actions">
             <button
