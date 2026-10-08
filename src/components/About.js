@@ -3,7 +3,7 @@ import "./About.css";
 export default function About() {
   const team = [
     {
-      name: "Lic. Elena Coronel",
+      name: "Lic. Eleana Coronel",
       role: (
         <>
           Socia fundadora
@@ -52,7 +52,7 @@ export default function About() {
             Acompañamos a empresas y pymes de distintos sectores en el
             fortalecimiento de su desempeño y competitividad.
           </p>
-          
+
           <h3 className="about-subheading">¿Cómo surge conexiones?</h3>
           <p className="about-body">
             Esta consultora nace de una amistad, conversaciones y una visión compartida: transformar

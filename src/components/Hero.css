@@ -65,7 +65,7 @@
 }
 
 .hero-title-line {
-  display: inline;
+  display: block;
 }
 
 .hero-title-sep {

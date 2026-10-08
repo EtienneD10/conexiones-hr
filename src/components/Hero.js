@@ -15,9 +15,7 @@ export default function Hero() {
         <div className="hero-content">
           <h1 className="hero-title">
             <span className="hero-title-line">Conectamos Talento</span>
-            <span className="hero-title-sep"> - </span>
             <span className="hero-title-line">Impulsamos Personas</span>
-            <span className="hero-title-sep"> - </span>
             <span className="hero-title-line">Fortalecemos Empresas</span>
           </h1>
           <p className="hero-subtitle">
