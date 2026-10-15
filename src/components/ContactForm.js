@@ -152,7 +152,7 @@ export default function ContactForm() {
           <div className="contact-info-card">
             <IconLocation />
             <span className="info-card-label">Ubicación</span>
-            <span className="info-card-value">Maldonado, Uruguay</span>
+            <span className="info-card-value">Uruguay</span>
           </div>
         </div>
 
