@@ -27,7 +27,7 @@ export default function About() {
       ),
       desc: "Desarrollador de programas de liderazgo, dinámicas de equipo e integración laboral. Apasionado por potenciar las habilidades humanas.",
       img: "/team-1.jpg",
-      linkedin: null,
+      linkedin: "https://www.linkedin.com/in/lic-gonzalo-malcon",
       email: "gmalcon@conexionesuy.com"
     },
     {
