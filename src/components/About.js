@@ -12,7 +12,9 @@ export default function About() {
         </>
       ),
       desc: "Especialista en atracción de talento, evaluación de competencias y psicología organizacional con más de 10 años de experiencia.",
-      img: "/team-3.jpg"
+      img: "/team-3.jpg",
+      linkedin: "https://www.linkedin.com/in/eleanacoronel",
+      email: "ecoronel@conexionesuy.com"
     },
     {
       name: "Lic. Gonzalo Malcon",
@@ -24,7 +26,9 @@ export default function About() {
         </>
       ),
       desc: "Desarrollador de programas de liderazgo, dinámicas de equipo e integración laboral. Apasionado por potenciar las habilidades humanas.",
-      img: "/team-1.jpg"
+      img: "/team-1.jpg",
+      linkedin: null,
+      email: "gmalcon@conexionesuy.com"
     },
     {
       name: "Lic. Juan Carlos Suárez",
@@ -36,7 +40,9 @@ export default function About() {
         </>
       ),
       desc: "Especialista en reestructuración y optimización de recursos empresariales, acompañando a PyMEs en el crecimiento sostenible.",
-      img: "/team-2.jpg"
+      img: "/team-2.jpg",
+      linkedin: null,
+      email: null
     }
   ];
 
@@ -82,19 +88,23 @@ export default function About() {
               <p className="about-team-desc">{member.desc}</p>
 
               <div className="team-socials">
-                <a href="#linkedin" className="team-social-link" aria-label="LinkedIn">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                    <rect x="2" y="9" width="4" height="12" />
-                    <circle cx="4" cy="4" r="2" />
-                  </svg>
-                </a>
-                <a href="#email" className="team-social-link" aria-label="Email">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                    <polyline points="22,6 12,13 2,6" />
-                  </svg>
-                </a>
+                {member.linkedin && (
+                  <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="team-social-link" aria-label="LinkedIn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                      <rect x="2" y="9" width="4" height="12" />
+                      <circle cx="4" cy="4" r="2" />
+                    </svg>
+                  </a>
+                )}
+                {member.email && (
+                  <a href={`mailto:${member.email}`} className="team-social-link" aria-label="Email">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                      <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                  </a>
+                )}
               </div>
             </div>
           ))}
