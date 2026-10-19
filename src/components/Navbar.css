@@ -100,7 +100,7 @@
   font-size: 0.9rem;
   border-radius: 50px;
   background: var(--navy);
-  color: #FFD700;
+  color: #7ECEF4;
   border: 2px solid var(--navy);
   font-weight: 600;
   cursor: pointer;
@@ -109,14 +109,14 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+  box-shadow: 0 0 12px rgba(126, 206, 244, 0.35);
 }
 
 .nav-cta:hover {
   background: var(--navy-mid);
   border-color: var(--navy-mid);
   transform: translateY(-1px);
-  box-shadow: 0 0 16px rgba(255, 215, 0, 0.6);
+  box-shadow: 0 0 16px rgba(126, 206, 244, 0.55);
 }
 
 /* ---- Hamburger ---- */
