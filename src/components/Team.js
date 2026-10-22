@@ -5,7 +5,7 @@ export default function Team() {
     {
       name: "Lic. María Gómez",
       role: "Directora de Reclutamiento y Selección",
-      desc: "Especialista en gestión de talento, reclutamiento y desarrollo de equipos, de entornos de trabajo mas sólidos, comprometidos y sostenibles.",
+      desc: "Especialista en atracción de talento, evaluación de competencias y psicología organizacional con más de 10 años de experiencia.",
       avatar: (
         <svg viewBox="0 0 100 100" className="team-svg-avatar">
           <circle cx="50" cy="50" r="48" fill="url(#avatarGrad1)" />

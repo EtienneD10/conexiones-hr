@@ -11,7 +11,7 @@ export default function About() {
           Consultora en Gestión Humana
         </>
       ),
-      desc: "Especialista en atracción de talento, evaluación de competencias y psicología organizacional con más de 10 años de experiencia.",
+      desc: "Especialista en gestión de talento, reclutamiento y desarrollo de equipos, de entornos de trabajo mas sólidos, comprometidos y sostenibles.",
       img: "/team-3.jpg",
       linkedin: "https://www.linkedin.com/in/eleanacoronel",
       email: "ecoronel@conexionesuy.com"
