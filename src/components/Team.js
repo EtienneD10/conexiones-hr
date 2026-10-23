@@ -31,7 +31,7 @@ export default function Team() {
     {
       name: "Ing. Laura Vecino",
       role: "Consultora de Estrategia y Procesos",
-      desc: "Especialista en reestructuración y optimización de recursos empresariales, acompañando a PyMEs en el crecimiento sostenible.",
+      desc: "Especialista en marketing y desarrollo empresarial, con mas de 30 años acompañando organizaciones en la mejora de su gestion comercial, la formación de equipos y la construcción de ventajas competitivas sostenibles.",
       avatar: (
         <svg viewBox="0 0 100 100" className="team-svg-avatar">
           <circle cx="50" cy="50" r="48" fill="url(#avatarGrad3)" />

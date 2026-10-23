@@ -39,7 +39,7 @@ export default function About() {
           Consultor Senior
         </>
       ),
-      desc: "Especialista en reestructuración y optimización de recursos empresariales, acompañando a PyMEs en el crecimiento sostenible.",
+      desc: "Especialista en marketing y desarrollo empresarial, con mas de 30 años acompañando organizaciones en la mejora de su gestion comercial, la formación de equipos y la construcción de ventajas competitivas sostenibles.",
       img: "/team-2.jpg",
       linkedin: null,
       email: null
