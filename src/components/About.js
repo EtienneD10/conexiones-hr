@@ -25,7 +25,7 @@ export default function About() {
           Asesor Desarrollo de Negocios y Gestión Estratégica
         </>
       ),
-      desc: "Desarrollador de programas de liderazgo, dinámicas de equipo e integración laboral. Apasionado por potenciar las habilidades humanas.",
+      desc: "Su trayectoria combina consultoría, desarrollo territorial, liderazgo de equipos y gestión empresarial, acompañando organizaciones en procesos de crecimiento, innovación y generación de valor.",
       img: "/team-1.jpg",
       linkedin: "https://www.linkedin.com/in/lic-gonzalo-malcon",
       email: "gmalcon@conexionesuy.com"
