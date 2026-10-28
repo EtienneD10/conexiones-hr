@@ -36,6 +36,7 @@ export default function ContactForm() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
   const [dragActive, setDragActive] = useState(false);
 
   const validateField = (name, value) => {
@@ -112,7 +113,9 @@ export default function ContactForm() {
     ].every(Boolean);
     if (!ok) return;
 
-    setIsSubmitting(true); setSubmitStatus(null);
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+    setErrorMessage("");
     const data = new FormData();
     Object.entries(formData).forEach(([k, v]) => { if (v) data.append(k, v); });
 
@@ -123,9 +126,16 @@ export default function ContactForm() {
         setSubmitStatus("success");
         setFormData({ name: "", email: "", phone: "", area: "", message: "", cv: null });
         if (fileInputRef.current) fileInputRef.current.value = "";
-      } else { setSubmitStatus("error"); }
-    } catch { setSubmitStatus("error"); }
-    finally { setIsSubmitting(false); }
+      } else {
+        setSubmitStatus("error");
+        setErrorMessage(json.error || "No se pudo procesar tu envío. Por favor intentalo nuevamente.");
+      }
+    } catch {
+      setSubmitStatus("error");
+      setErrorMessage("Error de conexión. Por favor verificá tu conexión e intentalo nuevamente.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -185,7 +195,7 @@ export default function ContactForm() {
               </svg>
               <div className="alert-text">
                 <h4>Hubo un error</h4>
-                <p>No se pudo procesar tu envío. Por favor intentalo nuevamente.</p>
+                <p>{errorMessage || "No se pudo procesar tu envío. Por favor intentalo nuevamente."}</p>
               </div>
               <button className="alert-close-btn" onClick={() => setSubmitStatus(null)} aria-label="Cerrar">×</button>
             </div>
@@ -320,7 +330,7 @@ export default function ContactForm() {
             {/* Submit Row */}
             <div className="form-submit-row">
               <p className="form-note">
-                Al enviar abriremos tu correo. Recordá adjuntar el CV antes de mandarlo.
+                Tus datos y CV se enviarán directamente a nuestro equipo de selección.
               </p>
               <button type="submit" className="submit-form-btn" disabled={isSubmitting}>
                 {isSubmitting ? (
