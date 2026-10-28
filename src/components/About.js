@@ -31,7 +31,7 @@ export default function About() {
       email: "gmalcon@conexionesuy.com"
     },
     {
-      name: "Lic. Juan Carlos Suárez",
+      name: "Juan Carlos Suárez",
       role: (
         <>
           Especialista en Marketing
