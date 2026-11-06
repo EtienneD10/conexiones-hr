@@ -24,6 +24,15 @@ export const metadata = {
   description: "Consultora de Recursos Humanos en Uruguay especializada en la atracción y selección de talento, y capacitaciones empresariales a medida.",
   keywords: ["Recursos Humanos", "Reclutamiento", "Selección de personal", "Capacitaciones", "Consultoría", "Talento", "Uruguay"],
   authors: [{ name: "Conexiones Consultora" }],
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({ children }) {
